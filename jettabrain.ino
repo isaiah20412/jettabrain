@@ -18,9 +18,9 @@ int RELAY_05 = 7;
 
 //# Strings
 char *lightModes[] = {"Off", "Auto", "On"};  // Light system modes: Auto=car controls. On=soft manual.
-String lightModeCurrent = lightModes[0];  // Currently selected light mode.
+int lightModeCurrent = 0;  // Currently selected light mode.
 char *brightModes[] = {"Low", "High"};  // Low or high beams.
-String brightModeCurrent = brightModes[0];  // Currently selected bright mode.
+int brightModeCurrent = 0;  // Currently selected bright mode.
 
 
 //# Libraries
@@ -77,10 +77,19 @@ void loop()
   // Continuously repeating code.
   delay(1000);
   if (lightModeCurrent == 2) {
-    lightModeCurrent = 0
+    lightModeCurrent = 0;
   }
-  else {
+  else
+  {
     lightModeCurrent++;
+  }
+
+  if (brightModeCurrent == 1) {
+    brightModeCurrent = 0;
+  }
+  else if (lightModeCurrent != 0)
+  {
+    brightModeCurrent++;
   }
 	updateMenu();
 }
@@ -98,7 +107,7 @@ void updateMenu()
   display.setTextSize(1);
   
   // Brights Status
-  display.setCursor(0, 25);
+  display.setCursor(0, 23);
   display.print(brightModes[brightModeCurrent]);
   display.print(" Beams");
   display.display();
