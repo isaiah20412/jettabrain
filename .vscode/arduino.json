@@ -1,0 +1,6 @@
+{
+    "sketch": "Jettabrain.ino",
+    "output": "build",
+    "configuration": "cpu=atmega328old",
+    "board": "arduino:avr:nano"
+}
