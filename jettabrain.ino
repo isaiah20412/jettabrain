@@ -75,8 +75,14 @@ void setup()
 void loop()
 {
   // Continuously repeating code.
-
-	//updateMenu();
+  delay(1000);
+  if (lightModeCurrent == 2) {
+    lightModeCurrent = 0
+  }
+  else {
+    lightModeCurrent++;
+  }
+	updateMenu();
 }
 
 
@@ -87,11 +93,13 @@ void updateMenu()
   display.clearDisplay();
   display.setTextSize(1); // Draw 1X-scale text
   display.setCursor(0, 0);
-  display.print(lightModeCurrent);
+  display.print("Mode: ");
+  display.print(lightModes[lightModeCurrent]);
   display.setTextSize(1);
   
   // Brights Status
-  display.setCursor(0, 30);
-  display.print(brightModeCurrent);
+  display.setCursor(0, 25);
+  display.print(brightModes[brightModeCurrent]);
+  display.print(" Beams");
   display.display();
 }
