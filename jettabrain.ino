@@ -8,12 +8,19 @@ int RELAY_02 = 4;
 int RELAY_03 = 5;
 int RELAY_04 = 6;
 int RELAY_05 = 7;
+int HIGH_BEAM_CAR = 8;
+int HIGH_BEAM_DRIVER = 9;
+int MODE = 10;
+int OFF = 11;
+
+
 
 //### Analog
 
 
 
 //## Booleans
+bool dim = false; // Display dimming called to run.
 
 
 //# Strings
@@ -30,7 +37,7 @@ int brightModeCurrent = 0;  // Currently selected bright mode.
 #include <Adafruit_SSD1306.h>
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 32 // OLED display height, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
 
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
@@ -63,7 +70,7 @@ void setup()
   display.setCursor(20, 0);
   display.print("Vehicle");
   display.setTextSize(1);
-  display.setCursor(0, 15);
+  display.setCursor(0, 20);
   display.print("Systems Initialized");
   display.display();
   delay(1500);
@@ -74,6 +81,21 @@ void setup()
 
 void loop()
 {
+  // Display Dimming
+  if (dim)
+  {
+    display.ssd1306_command(SSD1306_SETCONTRAST);
+    display.ssd1306_command(0x19);
+    dim = !dim;
+  }
+  else
+  {
+    display.ssd1306_command(SSD1306_SETCONTRAST);
+    display.ssd1306_command(0x8F);
+    dim = !dim;
+  }
+
+
   // Continuously repeating code.
   delay(1000);
   if (lightModeCurrent == 2) {
