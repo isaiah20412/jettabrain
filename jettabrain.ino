@@ -2,17 +2,18 @@
 
 //## Pins
 //### Digital
-int RELAY_00 = 2;
-int RELAY_01 = 3;
-int RELAY_02 = 4;
-int RELAY_03 = 5;
-int RELAY_04 = 6;
-int RELAY_05 = 7;
+int RELAY_00 = 2; // Light Bar Relay
+int RELAY_01 = 3; // Light Pods Relay
+int RELAY_03 = 5; // Unused; not wired
+int RELAY_02 = 4; // Unused; not wired
+int RELAY_04 = 6; // Unused; not wired
+int RELAY_05 = 7; // Unused; not wired
 int HIGH_BEAM_CAR = 8;
 int HIGH_BEAM_DRIVER = 9;
 int MODE = 10;
-int OFF = 11;
-
+int ONOFF = 11; // Auxiliary fuse block relay
+int DIMMER = 12; // Dimmer switch
+int CAR_LIGHTS = 13; // Car light switch 
 
 
 //### Analog
@@ -28,6 +29,7 @@ char *lightModes[] = {"Off", "Auto", "On"};  // Light system modes: Auto=car con
 int lightModeCurrent = 0;  // Currently selected light mode.
 char *brightModes[] = {"Low", "High"};  // Low or high beams.
 int brightModeCurrent = 0;  // Currently selected bright mode.
+int brightSelector = 0
 
 
 //# Libraries
@@ -54,15 +56,19 @@ void setup()
   pinMode(RELAY_03, OUTPUT);
   pinMode(RELAY_04, OUTPUT);
   pinMode(RELAY_05, OUTPUT);
+  pinMode(ONOFF, OUTPUT);
 
   // Initialize Display
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   display.clearDisplay();
   display.setTextSize(2); // Draw 2X-scale text
   display.setTextColor(WHITE);
-  display.print("Power On");
+  display.print("Powering On");
   display.display();
-  delay(1000);
+
+  // Activate auxiliary fuse block
+  digitalWrite(ONOFF, HIGH);
+  delay(1000);  // Pause, just for the fun of it.
 
   // Tell the user that we're ready
   display.clearDisplay();
@@ -80,46 +86,56 @@ void setup()
 }
 
 void loop()
+// Continuously repeating code.
 {
-  // Display Dimming
-  if (dim)
+  // Check Display Dimming Status
+  if (digitalRead(DIMMER) == HIGH)
   {
-    display.ssd1306_command(SSD1306_SETCONTRAST);
-    display.ssd1306_command(0x19);
-    dim = !dim;
+    dim = true;
+    dimDisplay();
   }
-  else
+  else if (digitalRead(DIMMER) == HIGH)
   {
-    display.ssd1306_command(SSD1306_SETCONTRAST);
-    display.ssd1306_command(0x8F);
-    dim = !dim;
+    dim = false;
+    dimDisplay();
   }
-
-
-  // Continuously repeating code.
-  delay(1000);
-  if (lightModeCurrent == 2) {
+  
+  // Check and Update Light Mode
+  if (lightModeCurrent == 2 && digitalRead(MODE) == HIGH) {
     lightModeCurrent = 0;
+    lightsOnOff();
   }
-  else
-  {
+  else if (digitalRead(MODE) == HIGH) {
     lightModeCurrent++;
+    lightsOnOff();
+  }
+  // Set Bright Mode Controller
+  if (lightModeCurrent == 1) {  // If on auto, read bright status from steering wheel stalk switch
+    brightSelector = HIGH_BEAM_CAR;
+  }
+  else if (lightModeCurrent == 2) { // If on manual, read bright status from button
+    brightSelector = HIGH_BEAM_DRIVER;
+  }
+  
+  
+  // Check and Update Bright Mode
+  if (lightModeCurrent != 0 && digitalRead(brightSelector) == HIGH) {
+    brightModeCurrent = 1;
+    changeBrights();
+  }
+  else if (lightModeCurrent == 0 || digitalRead(brightSelector) == LOW) {
+    brightModeCurrent = 0;
+    changeBrights();
   }
 
-  if (brightModeCurrent == 1) {
-    brightModeCurrent = 0;
-  }
-  else if (lightModeCurrent != 0)
-  {
-    brightModeCurrent++;
-  }
+
+  // Update Menu
 	updateMenu();
 }
 
 
 //# Function Declarations
-void updateMenu()
-{
+void updateMenu() {
   // Light Status
   display.clearDisplay();
   display.setTextSize(1); // Draw 1X-scale text
@@ -133,4 +149,39 @@ void updateMenu()
   display.print(brightModes[brightModeCurrent]);
   display.print(" Beams");
   display.display();
+}
+
+void dimDisplay() {
+  if (dim) {
+    display.ssd1306_command(SSD1306_SETCONTRAST);
+    display.ssd1306_command(0x19);
+  }
+  else {
+    display.ssd1306_command(SSD1306_SETCONTRAST);
+    display.ssd1306_command(0x8F);
+  }
+}
+
+void lightsOnOff () {
+  if (lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == HIGH) {
+    digitalWrite(RELAY_00, HIGH);
+  }
+  else if (lightModeCurrent == 2) {
+    digitalWrite(RELAY_00, HIGH);
+  }
+  else {
+    digitalWrite(RELAY_00, LOW);
+    changeBrights();
+  }
+  
+  
+}
+
+void changeBrights() {
+  if (brightModeCurrent == 1 && lightModeCurrent != 0) {
+    digitalWrite(RELAY_01, HIGH);
+  }
+  else {
+    digitalWrite(RELAY_01, LOW);
+  }
 }
