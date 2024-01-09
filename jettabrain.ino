@@ -29,7 +29,7 @@ char *lightModes[] = {"Off", "Auto", "On"};  // Light system modes: Auto=car con
 int lightModeCurrent = 0;  // Currently selected light mode.
 char *brightModes[] = {"Low", "High"};  // Low or high beams.
 int brightModeCurrent = 0;  // Currently selected bright mode.
-int brightSelector = 0
+int brightSelector = 0;
 
 
 //# Libraries
