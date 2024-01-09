@@ -29,7 +29,7 @@ char *lightModes[] = {"Off", "Auto", "On"};  // Light system modes: Auto=car con
 int lightModeCurrent = 0;  // Currently selected light mode.
 char *brightModes[] = {"Low", "High"};  // Low or high beams.
 int brightModeCurrent = 0;  // Currently selected bright mode.
-int brightSelector = 0;
+int brightSelector = 9;
 
 
 //# Libraries
@@ -109,14 +109,15 @@ void loop()
     lightModeCurrent++;
     lightsOnOff();
   }
-  // Set Bright Mode Controller
+
+  /* Set Bright Mode Controller
   if (lightModeCurrent == 1) {  // If on auto, read bright status from steering wheel stalk switch
     brightSelector = HIGH_BEAM_CAR;
   }
   else if (lightModeCurrent == 2) { // If on manual, read bright status from button
     brightSelector = HIGH_BEAM_DRIVER;
   }
-  
+  */
   
   // Check and Update Bright Mode
   if (lightModeCurrent != 0 && digitalRead(brightSelector) == HIGH) {
