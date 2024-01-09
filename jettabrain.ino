@@ -22,6 +22,7 @@ int CAR_LIGHTS = 13; // Car light switch
 
 //## Booleans
 bool dim = false; // Display dimming called to run.
+bool brightsOn = false;
 
 
 //# Strings
@@ -102,10 +103,12 @@ void loop()
   
   // Check and Update Light Mode
   if (lightModeCurrent == 2 && digitalRead(MODE) == HIGH) {
+    delay(50);
     lightModeCurrent = 0;
     lightsOnOff();
   }
   else if (digitalRead(MODE) == HIGH) {
+    delay(50);
     lightModeCurrent++;
     lightsOnOff();
   }
@@ -121,13 +124,17 @@ void loop()
   
   // Check and Update Bright Mode
   if (lightModeCurrent != 0 && digitalRead(brightSelector) == HIGH) {
-    brightModeCurrent = 1;
+    delay(50);
+    brightsOn = !brightsOn;
     changeBrights();
   }
-  else if (lightModeCurrent == 0 || digitalRead(brightSelector) == LOW) {
+  /*
+  if (brightModeCurrent != 0 && digitalRead(brightSelector) == HIGH) {
+    delay(50);
     brightModeCurrent = 0;
     changeBrights();
   }
+  */
 
 
   // Update Menu
@@ -146,10 +153,15 @@ void updateMenu() {
   display.setTextSize(1);
   
   // Brights Status
-  display.setCursor(0, 23);
-  display.print(brightModes[brightModeCurrent]);
-  display.print(" Beams");
-  display.display();
+  if (lightModeCurrent == 0) {
+    display.display();
+  }
+  else {
+    display.setCursor(0, 23);
+    display.print(brightModes[brightModeCurrent]);
+    display.print(" Beams");
+    display.display();
+  }
 }
 
 void dimDisplay() {
@@ -172,17 +184,20 @@ void lightsOnOff () {
   }
   else {
     digitalWrite(RELAY_00, LOW);
-    changeBrights();
+    digitalWrite(RELAY_01, LOW);
+    //changeBrights();
   }
   
   
 }
 
 void changeBrights() {
-  if (brightModeCurrent == 1 && lightModeCurrent != 0) {
+  if (brightsOn) {
     digitalWrite(RELAY_01, HIGH);
+    brightModeCurrent = 1;
   }
   else {
     digitalWrite(RELAY_01, LOW);
+    brightModeCurrent = 0;
   }
 }
