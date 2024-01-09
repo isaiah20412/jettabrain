@@ -153,7 +153,7 @@ void updateMenu() {
   display.setTextSize(1);
   
   // Brights Status
-  if (lightModeCurrent == 0) {
+  if (lightModeCurrent == 0 || lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == LOW) {
     display.display();
   }
   else {
