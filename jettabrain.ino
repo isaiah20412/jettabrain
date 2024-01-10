@@ -154,7 +154,7 @@ void updateMenu() {
   display.setTextSize(1);
   
   // Brights Status
-  if (lightModeCurrent == 0 || lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == LOW) {
+  if (lightModeCurrent == 0 || lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == LOW) { //If the lights aren't on, don't show brights status.
     display.display();
   }
   else {
@@ -178,14 +178,14 @@ void dimDisplay() {
 
 void lightsOnOff () {
   if (lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == HIGH) {
-    digitalWrite(RELAY_00, HIGH);
+    digitalWrite(RELAY_00, LOW);
   }
   else if (lightModeCurrent == 2) {
-    digitalWrite(RELAY_00, HIGH);
+    digitalWrite(RELAY_00, LOW);
   }
   else {
-    digitalWrite(RELAY_00, LOW);
-    digitalWrite(RELAY_01, LOW);
+    digitalWrite(RELAY_01, HIGH);
+    digitalWrite(RELAY_00, HIGH);
     //changeBrights();
   }
   
@@ -194,11 +194,11 @@ void lightsOnOff () {
 
 void changeBrights() {
   if (brightsOn) {
-    digitalWrite(RELAY_01, HIGH);
+    digitalWrite(RELAY_01, LOW);
     brightModeCurrent = 1;
   }
   else {
-    digitalWrite(RELAY_01, LOW);
+    digitalWrite(RELAY_01, HIGH);
     brightModeCurrent = 0;
   }
 }
