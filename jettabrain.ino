@@ -51,6 +51,7 @@ void setup()
 {
 	Serial.begin(9600);
   // Define pin modes.
+  // Note: the relay module used is weird; LOW signal on a pin energizes the respective coil.
   pinMode(RELAY_00, OUTPUT);
   pinMode(RELAY_01, OUTPUT);
   pinMode(RELAY_02, OUTPUT);
@@ -68,7 +69,7 @@ void setup()
   display.display();
 
   // Activate auxiliary fuse block
-  digitalWrite(ONOFF, HIGH);
+  digitalWrite(ONOFF, LOW);
   delay(1000);  // Pause, just for the fun of it.
 
   // Tell the user that we're ready

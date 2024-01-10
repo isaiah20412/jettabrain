@@ -1470,7 +1470,7 @@
     (pin "11" (uuid 8907c68e-5edf-4c4d-a74e-d6f035b6c5e3))
     (pin "12" (uuid 9c476070-18db-4ea3-8a5b-12dda2cb4382))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
           (reference "J5") (unit 1)
         )
@@ -1495,7 +1495,7 @@
     )
     (pin "1" (uuid 57b780bf-055f-4d6c-af54-1ff5a02d587e))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
           (reference "J7") (unit 1)
         )
@@ -1506,7 +1506,7 @@
   (symbol (lib_id "Connector:Conn_01x07_Pin") (at 110.49 124.46 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 25b8f82c-0c3c-44e8-95a7-1789527c1d8b)
-    (property "Reference" "J2" (at 110.49 129.54 90)
+    (property "Reference" "I/O1" (at 110.49 129.54 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "Conn_01x07_Pin" (at 110.49 127 90)
@@ -1526,9 +1526,9 @@
     (pin "5" (uuid a57d082e-47d5-4c0b-8859-82c80695f77d))
     (pin "2" (uuid 0626642a-216b-483f-b518-cd9b5c4cec5c))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
-          (reference "J2") (unit 1)
+          (reference "I/O1") (unit 1)
         )
       )
     )
@@ -1537,7 +1537,7 @@
   (symbol (lib_id "Connector:Conn_01x07_Pin") (at 187.96 135.89 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2cea6f95-5f64-471f-97e5-9cb66fb86d5c)
-    (property "Reference" "J4" (at 187.96 138.43 90)
+    (property "Reference" "GND1" (at 187.96 138.43 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "Conn_01x07_Pin" (at 187.96 140.97 90)
@@ -1557,9 +1557,9 @@
     (pin "5" (uuid 9abd83c2-ff06-4fac-b8f4-c92214eec152))
     (pin "2" (uuid 4a7d8fa7-f026-4022-8a54-8da5b4123027))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
-          (reference "J4") (unit 1)
+          (reference "GND1") (unit 1)
         )
       )
     )
@@ -1589,7 +1589,7 @@
     (pin "1" (uuid 0112c55b-9fa6-4b91-8824-e09ea968c5d8))
     (pin "2" (uuid d9fa6331-236e-4270-b177-9f986e494a84))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
           (reference "R1") (unit 1)
         )
@@ -1600,7 +1600,7 @@
   (symbol (lib_id "Connector:Conn_01x07_Pin") (at 185.42 66.04 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3d04a165-7c92-4cda-adbe-3f5a239481fe)
-    (property "Reference" "J1" (at 185.42 60.96 90)
+    (property "Reference" "+5V1" (at 185.42 60.96 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "Conn_01x07_Pin" (at 185.42 63.5 90)
@@ -1620,9 +1620,9 @@
     (pin "5" (uuid bb17faa4-68d7-4d2f-8d28-d4abd34fe340))
     (pin "2" (uuid 4e196992-3f4f-4fb4-910e-a6b858dc11ac))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
-          (reference "J1") (unit 1)
+          (reference "+5V1") (unit 1)
         )
       )
     )
@@ -1645,7 +1645,7 @@
     )
     (pin "1" (uuid 8cba1dd8-7e2a-4af6-afd0-9abf7bb1ff0c))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
           (reference "#PWR01") (unit 1)
         )
@@ -1671,7 +1671,7 @@
     (pin "1" (uuid f727b940-03ac-4443-bcfe-46d7e8939d60))
     (pin "2" (uuid 47809571-11b4-4989-befe-1174a88b4b59))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
           (reference "R3") (unit 1)
         )
@@ -1697,7 +1697,7 @@
     (pin "1" (uuid 2ac31c1a-0cf7-4820-bbb1-f21c8283c5a6))
     (pin "2" (uuid 83d49dcf-f15a-468b-b8c9-b7b704b1b8b9))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
           (reference "R2") (unit 1)
         )
@@ -1729,7 +1729,7 @@
     (pin "7" (uuid 572222d5-9aa9-4aaf-849f-555f94efa2c2))
     (pin "3" (uuid 1f25eb57-6a91-4594-91a2-620a73b69b27))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
           (reference "J6") (unit 1)
         )
@@ -1755,7 +1755,7 @@
     (pin "1" (uuid b70fc90c-f7e5-43ee-a433-7e51b666874f))
     (pin "2" (uuid a37d0cc8-0438-4a5e-a0b9-ba00750db823))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
           (reference "R4") (unit 1)
         )
@@ -1780,7 +1780,7 @@
     )
     (pin "1" (uuid 1ed76a92-6450-43a9-a454-1f705ce4903a))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
           (reference "#PWR02") (unit 1)
         )
@@ -1791,7 +1791,7 @@
   (symbol (lib_id "Connector:Conn_01x04_Pin") (at 191.77 111.76 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e6a69531-e431-43c4-ab8c-8b9f3fa8e020)
-    (property "Reference" "J3" (at 189.23 118.11 0)
+    (property "Reference" "Display1" (at 189.23 118.11 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "Conn_01x04" (at 193.04 115.57 0)
@@ -1808,9 +1808,9 @@
     (pin "1" (uuid 58104620-e18c-457e-8194-cd677acc1dcb))
     (pin "4" (uuid 9bdd0e34-322f-4fd0-8787-7c648e45c996))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
-          (reference "J3") (unit 1)
+          (reference "Display1") (unit 1)
         )
       )
     )
@@ -1819,7 +1819,7 @@
   (symbol (lib_id "MCU_Module:Arduino_Nano_v3.x") (at 152.4 101.6 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ff8d2fc4-0ade-4ffa-a805-0538b1a77e6e)
-    (property "Reference" "A1" (at 157.1341 127 0)
+    (property "Reference" "Arduino_Nano1" (at 157.1341 127 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Value" "Arduino_Nano_v3.x" (at 157.1341 129.54 0)
@@ -1862,9 +1862,9 @@
     (pin "22" (uuid 8a4540d3-73f2-4bbb-8338-ee2106d3d82d))
     (pin "23" (uuid 9f733273-29ca-4efe-8940-2be597b3f601))
     (instances
-      (project "KCT"
+      (project "Jettabrain"
         (path "/008ca40f-114f-48cb-bea6-2f15c29a817d"
-          (reference "A1") (unit 1)
+          (reference "Arduino_Nano1") (unit 1)
         )
       )
     )

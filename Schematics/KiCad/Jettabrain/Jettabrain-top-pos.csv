@@ -1,0 +1,13 @@
+Ref,Val,Package,PosX,PosY,Rot,Side
+"+5V1","Conn_01x07_Pin","PinHeader_1x07_P1.00mm_Horizontal",143.050000,-81.788000,90.000000,top
+"Arduino_Nano1","Arduino_Nano_v3.x","Arduino_Nano",134.620000,-88.392000,0.000000,top
+"Display1","Conn_01x04","PinHeader_1x04_P1.00mm_Horizontal",157.988000,-88.646000,0.000000,top
+"GND1","Conn_01x07_Pin","PinHeader_1x07_P1.00mm_Horizontal",134.144000,-81.788000,90.000000,top
+"I/O1","Conn_01x07_Pin","PinHeader_1x07_P1.00mm_Horizontal",124.311000,-110.188000,180.000000,top
+"J5","Conn_01x14_Pin","PinHeader_1x14_P1.00mm_Vertical",126.746000,-88.346000,0.000000,top
+"J6","Conn_01x08_Pin","PinHeader_1x08_P1.00mm_Vertical",157.226000,-109.332000,0.000000,top
+"J7","Conn_01x01_Pin","PinHeader_1x01_P1.00mm_Vertical",157.226000,-118.872000,0.000000,top
+"R1","220R","R_1206_3216Metric_Pad1.30x1.75mm_HandSolder",126.264000,-113.308000,0.000000,top
+"R2","220R","R_1206_3216Metric_Pad1.30x1.75mm_HandSolder",126.264000,-116.598000,0.000000,top
+"R3","220R","R_1206_3216Metric_Pad1.30x1.75mm_HandSolder",126.264000,-119.888000,0.000000,top
+"R4","220R","R_1206_3216Metric_Pad1.30x1.75mm_HandSolder",126.264000,-123.178000,0.000000,top
