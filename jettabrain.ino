@@ -28,7 +28,7 @@ bool brightsOn = false;
 //# Strings
 char *lightModes[] = {"Off", "Auto", "On"};  // Light system modes: Auto=car controls. On=soft manual.
 int lightModeCurrent = 0;  // Currently selected light mode.
-char *brightModes[] = {"Low", "High"};  // Low or high beams.
+char *brightModes[] = {"Low", "High", "All"};  // Low or high beams.
 int brightModeCurrent = 0;  // Currently selected bright mode.
 int brightSelector = 9;
 
@@ -124,9 +124,15 @@ void loop()
   */
   
   // Check and Update Bright Mode
-  if (lightModeCurrent != 0 && digitalRead(brightSelector) == HIGH) {
+  if (lightModeCurrent == 1 && digitalRead(brightSelector) == HIGH) {
     delay(50);
     brightsOn = !brightsOn;
+    changeBrights();
+  }
+  else if (lightModeCurrent == 2 && digitalRead(brightSelector) == HIGH) {
+    delay(50);
+    brightModeCurrent++;
+    if bright
     changeBrights();
   }
   /*
@@ -157,6 +163,12 @@ void updateMenu() {
   if (lightModeCurrent == 0 || lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == LOW) { //If the lights aren't on, don't show brights status.
     display.display();
   }
+  else if (lightModeCurrent == 2) {
+    display.setCursor(0, 23);
+    display.print(brightModes[brightModeCurrent]);
+    display.print(" Beams");
+    display.display();
+  }
   else {
     display.setCursor(0, 23);
     display.print(brightModes[brightModeCurrent]);
@@ -180,7 +192,7 @@ void lightsOnOff () {
   if (lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == HIGH) {
     digitalWrite(RELAY_00, LOW);
   }
-  else if (lightModeCurrent == 2) {
+  else if (lightModeCurrent == 2 && !brightsOn) {
     digitalWrite(RELAY_00, LOW);
   }
   else {
