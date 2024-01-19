@@ -1969,7 +1969,7 @@
     )
   )
 
-  (gr_rect (start 122.174 77.47) (end 160.274 128.27)
+  (gr_rect (start 122.274 77.27) (end 160.274 128.27)
     (stroke (width 0.1) (type default)) (fill none) (layer "Edge.Cuts") (tstamp b1086760-a440-47f5-9327-5897f7d94f59))
   (gr_text "JLCJLCJLCJLC" (at 147.32 92.456) (layer "B.SilkS") (tstamp 03b129e5-b324-420b-a759-34392ef5b3ea)
     (effects (font (size 1 1) (thickness 0.15)) (justify left bottom mirror))
