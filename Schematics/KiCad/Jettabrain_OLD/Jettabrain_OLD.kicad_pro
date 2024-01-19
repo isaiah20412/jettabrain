@@ -54,9 +54,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.0,
-          "height": 0.85,
-          "width": 0.85
+          "drill": 0.762,
+          "height": 1.524,
+          "width": 1.524
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -412,7 +412,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "Jettabrain.kicad_pro",
+    "filename": "KCT.kicad_pro",
     "version": 1
   },
   "net_settings": {
