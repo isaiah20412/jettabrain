@@ -132,7 +132,6 @@ void loop()
   else if (lightModeCurrent == 2 && digitalRead(brightSelector) == HIGH) {
     delay(50);
     brightModeCurrent++;
-    if bright
     changeBrights();
   }
   /*
