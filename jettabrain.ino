@@ -2,8 +2,8 @@
 
 //## Pins
 //### Digital
-int RELAY_00 = 2; // Light Bar Relay
-int RELAY_01 = 3; // Light Pods Relay
+int RELAY_L = 2; // Light Bar Relay
+int RELAY_H = 3; // Light Pods Relay
 int RELAY_03 = 5; // Unused; not wired
 int RELAY_02 = 4; // Unused; not wired
 int RELAY_04 = 6; // Unused; not wired
@@ -52,8 +52,8 @@ void setup()
 	Serial.begin(9600);
   // Define pin modes.
   // Note: the relay module used is weird; LOW signal on a pin energizes the respective coil.
-  pinMode(RELAY_00, OUTPUT);
-  pinMode(RELAY_01, OUTPUT);
+  pinMode(RELAY_L, OUTPUT);
+  pinMode(RELAY_H, OUTPUT);
   pinMode(RELAY_02, OUTPUT);
   pinMode(RELAY_03, OUTPUT);
   pinMode(RELAY_04, OUTPUT);
@@ -103,17 +103,18 @@ void loop()
   }
   
   // Check and Update Light Mode
-  if (lightModeCurrent == 2 && digitalRead(MODE) == HIGH) {
-    delay(50);
-    lightModeCurrent = 0;
-    lightsOnOff();
+  if (lightModeCurrent == 2 && digitalRead(MODE) == HIGH) { // If light mode is on, reset to off
+    delay(50); //Debounce
+    lightModeCurrent = 0; //Set the light mode
+    lightsOnOff(); //Activate relays in accordance with current mode
   }
-  else if (digitalRead(MODE) == HIGH) {
-    delay(50);
-    lightModeCurrent++;
-    lightsOnOff();
+  else if (digitalRead(MODE) == HIGH) { // Otherwise increment to the next mode option
+    delay(50); //ibid
+    lightModeCurrent++; //ibid
+    lightsOnOff(); //ibid
   }
 
+// Old code, delete later
   /* Set Bright Mode Controller
   if (lightModeCurrent == 1) {  // If on auto, read bright status from steering wheel stalk switch
     brightSelector = HIGH_BEAM_CAR;
@@ -125,7 +126,7 @@ void loop()
   
   // Check and Update Bright Mode
   if (lightModeCurrent == 1 && digitalRead(brightSelector) == HIGH) {
-    delay(50);
+    delay(50); //Debounce
     brightsOn = !brightsOn;
     changeBrights();
   }
@@ -176,7 +177,7 @@ void updateMenu() {
   }
 }
 
-void dimDisplay() {
+void dimDisplay() { // Dim the display if dimmer switch is on. **Still in development**.
   if (dim) {
     display.ssd1306_command(SSD1306_SETCONTRAST);
     display.ssd1306_command(0x19);
@@ -189,14 +190,14 @@ void dimDisplay() {
 
 void lightsOnOff () {
   if (lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == HIGH) {
-    digitalWrite(RELAY_00, LOW);
+    digitalWrite(RELAY_L, LOW);
   }
   else if (lightModeCurrent == 2 && !brightsOn) {
-    digitalWrite(RELAY_00, LOW);
+    digitalWrite(RELAY_L, LOW);
   }
   else {
-    digitalWrite(RELAY_01, HIGH);
-    digitalWrite(RELAY_00, HIGH);
+    digitalWrite(RELAY_H, HIGH);
+    digitalWrite(RELAY_L, HIGH);
     //changeBrights();
   }
   
@@ -205,11 +206,11 @@ void lightsOnOff () {
 
 void changeBrights() {
   if (brightsOn) {
-    digitalWrite(RELAY_01, LOW);
+    digitalWrite(RELAY_H, LOW);
     brightModeCurrent = 1;
   }
   else {
-    digitalWrite(RELAY_01, HIGH);
+    digitalWrite(RELAY_H, HIGH);
     brightModeCurrent = 0;
   }
 }

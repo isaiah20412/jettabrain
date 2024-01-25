@@ -1199,6 +1199,11 @@
     (stroke (width 0) (type default))
     (uuid 6cd7584e-30ac-49e7-9214-22f5540d6de7)
   )
+  (polyline (pts (xy 95.25 123.19) (xy 102.87 123.19))
+    (stroke (width 0) (type default))
+    (uuid 7392c636-df3b-4a50-93d1-7363a3ce5856)
+  )
+
   (wire (pts (xy 154.94 128.27) (xy 180.34 128.27))
     (stroke (width 0) (type default))
     (uuid 765dee01-69a9-41f6-8308-770afddbaee2)
@@ -1386,6 +1391,14 @@
   (wire (pts (xy 170.18 111.76) (xy 184.15 111.76))
     (stroke (width 0) (type default))
     (uuid ff71969d-776c-4460-9461-763487de9fa3)
+  )
+
+  (text_box "Pinout:\n1=CAR_LIGHTS\n2=DIMMER\n3=MODE\n4=HIGH_BEAM_DRIVER\n5=RELAY_L\n6=RELAY_H\n7=ONOFF"
+    (at 72.39 109.22 0) (size 22.86 17.78)
+    (stroke (width 0) (type default))
+    (fill (type none))
+    (effects (font (size 1.27 1.27)) (justify left top))
+    (uuid 746bd99b-66eb-4244-97e3-502db377b76f)
   )
 
   (symbol (lib_id "Connector:Conn_01x14_Pin") (at 129.54 101.6 0) (unit 1)
