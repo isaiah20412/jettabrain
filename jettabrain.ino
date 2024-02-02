@@ -65,7 +65,7 @@ void setup()
   display.clearDisplay();
   display.setTextSize(2); // Draw 2X-scale text
   display.setTextColor(WHITE);
-  display.print("Powering On");
+  display.print("Power On");
   display.display();
 
   // Activate auxiliary fuse block; ensure both relays are set to "off"
@@ -77,10 +77,10 @@ void setup()
   // Tell the user that we're ready
   display.clearDisplay();
   display.setTextSize(2); // Draw 2X-scale text
-  display.setCursor(20, 0);
+  display.setCursor(23, 0);
   display.print("Vehicle");
   display.setTextSize(1);
-  display.setCursor(0, 20);
+  display.setCursor(5, 20);
   display.print("Systems Initialized");
   display.display();
   delay(1500);
@@ -163,11 +163,11 @@ void loop()
 void updateMenu() {
   // Light Status
   display.clearDisplay();
-  display.setTextSize(1); // Draw 1X-scale text
+  display.setTextSize(2); // Draw 1X-scale text
   display.setCursor(0, 0);
   display.print("Mode: ");
   display.print(lightModes[lightModeCurrent]);
-  display.setTextSize(1);
+  display.setTextSize(2);
   
   // Brights Status
   if (lightModeCurrent == 0/* || lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == LOW*/) { //If the lights aren't on, don't show brights status.
