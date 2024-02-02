@@ -116,16 +116,6 @@ void loop()
     lightsOnOff(); //ibid
   }
 
-// Old code, delete later
-  /* Set Bright Mode Controller
-  if (lightModeCurrent == 1) {  // If on auto, read bright status from steering wheel stalk switch
-    brightSelector = HIGH_BEAM_CAR;
-  }
-  else if (lightModeCurrent == 2) { // If on manual, read bright status from button
-    brightSelector = HIGH_BEAM_DRIVER;
-  }
-  */
-  
   // Check and Update Bright Mode
   if (lightModeCurrent != 0 && digitalRead(brightSelector) == HIGH) {
     delay(50); //Debounce
@@ -136,23 +126,6 @@ void loop()
   else {
 
   }
-
-  /*
-  else if (lightModeCurrent == 2 && digitalRead(brightSelector) == HIGH) {
-    delay(50);
-    brightModeCurrent++;
-    changeBrights();
-  }
-  */
-
-  /*
-  if (brightModeCurrent != 0 && digitalRead(brightSelector) == HIGH) {
-    delay(50);
-    brightModeCurrent = 0;
-    changeBrights();
-  }
-  */
-
 
   // Update Menu
 	updateMenu();
@@ -199,12 +172,6 @@ void dimDisplay() { // Dim the display if dimmer switch is on. **Still in develo
 }
 
 void lightsOnOff () {
-  /*
-  if (lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == HIGH) {
-    digitalWrite(RELAY_L, LOW);
-  }
-  */
-
   if (lightModeCurrent == 1) {
     digitalWrite(RELAY_L, LOW);
     changeBrights();
