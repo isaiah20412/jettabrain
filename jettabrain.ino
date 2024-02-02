@@ -26,7 +26,7 @@ bool brightsOn = false;
 
 
 //# Strings
-char *lightModes[] = {"Off", "Auto", "On"};  // Light system modes: Auto=car controls. On=soft manual.
+char *lightModes[] = {"Off", "On"};  // Light system modes: Auto=car controls. On=soft manual.
 int lightModeCurrent = 0;  // Currently selected light mode.
 char *brightModes[] = {"Low", "High", "All"};  // Low or high beams.
 int brightModeCurrent = 0;  // Currently selected bright mode.
@@ -68,8 +68,10 @@ void setup()
   display.print("Powering On");
   display.display();
 
-  // Activate auxiliary fuse block
+  // Activate auxiliary fuse block; ensure both relays are set to "off"
   digitalWrite(ONOFF, LOW);
+  digitalWrite(RELAY_H, HIGH);
+  digitalWrite(RELAY_L, HIGH);
   delay(1000);  // Pause, just for the fun of it.
 
   // Tell the user that we're ready
@@ -103,7 +105,7 @@ void loop()
   }
   
   // Check and Update Light Mode
-  if (lightModeCurrent == 2 && digitalRead(MODE) == HIGH) { // If light mode is on, reset to off
+  if (lightModeCurrent == 1 && digitalRead(MODE) == HIGH) { // If light mode is on, reset to off
     delay(50); //Debounce
     lightModeCurrent = 0; //Set the light mode
     lightsOnOff(); //Activate relays in accordance with current mode
@@ -125,16 +127,24 @@ void loop()
   */
   
   // Check and Update Bright Mode
-  if (lightModeCurrent == 1 && digitalRead(brightSelector) == HIGH) {
+  if (lightModeCurrent != 0 && digitalRead(brightSelector) == HIGH) {
     delay(50); //Debounce
     brightsOn = !brightsOn;
     changeBrights();
   }
+
+  else {
+
+  }
+
+  /*
   else if (lightModeCurrent == 2 && digitalRead(brightSelector) == HIGH) {
     delay(50);
     brightModeCurrent++;
     changeBrights();
   }
+  */
+
   /*
   if (brightModeCurrent != 0 && digitalRead(brightSelector) == HIGH) {
     delay(50);
@@ -160,10 +170,10 @@ void updateMenu() {
   display.setTextSize(1);
   
   // Brights Status
-  if (lightModeCurrent == 0 || lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == LOW) { //If the lights aren't on, don't show brights status.
+  if (lightModeCurrent == 0/* || lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == LOW*/) { //If the lights aren't on, don't show brights status.
     display.display();
   }
-  else if (lightModeCurrent == 2) {
+  else if (lightModeCurrent == 1) {
     display.setCursor(0, 23);
     display.print(brightModes[brightModeCurrent]);
     display.print(" Beams");
@@ -189,11 +199,15 @@ void dimDisplay() { // Dim the display if dimmer switch is on. **Still in develo
 }
 
 void lightsOnOff () {
+  /*
   if (lightModeCurrent == 1 && digitalRead(CAR_LIGHTS) == HIGH) {
     digitalWrite(RELAY_L, LOW);
   }
-  else if (lightModeCurrent == 2 && !brightsOn) {
+  */
+
+  if (lightModeCurrent == 1) {
     digitalWrite(RELAY_L, LOW);
+    changeBrights();
   }
   else {
     digitalWrite(RELAY_H, HIGH);
@@ -205,7 +219,7 @@ void lightsOnOff () {
 }
 
 void changeBrights() {
-  if (brightsOn) {
+  if (brightsOn && lightsOnOff != 0) {
     digitalWrite(RELAY_H, LOW);
     brightModeCurrent = 1;
   }
